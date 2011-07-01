@@ -15,14 +15,14 @@ module ChangelogParser
       self.new(File.read(path), format)
     end
 
-    def versions
-      @versions ||= @changelog.split(@format.section_start).map {|section| Version.new(section, @format)}
+    def releases
+      @releases ||= @changelog.split(@format.section_start).map {|section| Release.new(section, @format)}
     end
 
   end
 
 
-  class Version
+  class Release
 
     attr_accessor :text
 
@@ -39,8 +39,8 @@ module ChangelogParser
       @headline ||= @text[@format.headline]
     end
 
-    def number
-      @number ||= headline[@format.number]
+    def version
+      @version ||= headline[@format.version]
     end
 
     def release_date
@@ -52,7 +52,7 @@ module ChangelogParser
                           rescue ArgumentError # date unparseable
                             nil
                           end
-                        end 
+                        end
     end
 
   end
@@ -66,14 +66,14 @@ module ChangelogParser
       def self.section_start;  raise NotImplementedError; end
       def self.line_seperator; raise NotImplementedError; end
       def self.headline;       raise NotImplementedError; end
-      def self.number;         raise NotImplementedError; end
+      def self.version;        raise NotImplementedError; end
       def self.release_date;   raise NotImplementedError; end
     end
 
     class Default < Format
 
       def self.section_start
-        /^(?=\={1,3}.+#{self.number})/
+        /^(?=\={1,3}.+#{self.version})/
       end
 
       def self.line_seperator
@@ -84,7 +84,7 @@ module ChangelogParser
         /#{self.section_start}.+$/
       end
 
-      def self.number
+      def self.version
         RE_GEM_VERSION
       end
 
@@ -108,7 +108,7 @@ module ChangelogParser
         /#{self.section_start}.+$/
       end
 
-      def self.number
+      def self.version
         RE_GEM_VERSION
       end
 
