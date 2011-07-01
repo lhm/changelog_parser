@@ -61,7 +61,7 @@ module ChangelogParser
 
     class Format
 
-      RE_SEMVER = /\d+.\d+.\d/
+      RE_GEM_VERSION = /#{Gem::Version::VERSION_PATTERN}/   # '[0-9]+(\.[0-9a-zA-Z]+)*'
 
       def self.section_start;  raise NotImplementedError; end
       def self.line_seperator; raise NotImplementedError; end
@@ -85,7 +85,7 @@ module ChangelogParser
       end
 
       def self.number
-        RE_SEMVER
+        RE_GEM_VERSION
       end
 
       def self.release_date
@@ -109,7 +109,7 @@ module ChangelogParser
       end
 
       def self.number
-        RE_SEMVER
+        RE_GEM_VERSION
       end
 
       def self.release_date
