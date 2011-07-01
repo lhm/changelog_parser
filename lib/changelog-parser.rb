@@ -24,6 +24,8 @@ module ChangelogParser
 
   class Release
 
+    include Comparable
+
     attr_accessor :text
 
     def initialize(section_string, format)
@@ -40,7 +42,7 @@ module ChangelogParser
     end
 
     def version
-      @version ||= headline[@format.version]
+      @version ||= Gem::Version.create(headline[@format.version])
     end
 
     def release_date
@@ -53,6 +55,11 @@ module ChangelogParser
                             nil
                           end
                         end
+    end
+
+    def <=> other
+      return unless ChangelogParser::Release === other
+      self.version.<=>(other.version)
     end
 
   end
