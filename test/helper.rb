@@ -12,7 +12,7 @@ require 'rr'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'changelog-parser'
+require 'changelog_parser'
 
 class MiniTest::Unit::TestCase
   include RR::Adapters::MiniTest
