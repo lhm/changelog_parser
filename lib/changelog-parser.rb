@@ -6,12 +6,12 @@ module ChangelogParser
 
     attr_accessor :changelog
 
-    def initialize(changelog_string, format)
+    def initialize(changelog_string, format=ChangelogParser::Formats::Default)
       @changelog = changelog_string
       @format    = format
     end
 
-    def self.read(path, format)
+    def self.read(path, format=ChangelogParser::Formats::Default)
       self.new(File.read(path), format)
     end
 
