@@ -11,4 +11,6 @@ group :development do
   gem "jeweler", "~> 1.6.2"
   gem "rcov", ">= 0"
   gem "autotest-standalone", ">= 0"
+  # using rr head for now (01-07-11) in order to get the recently added minitest adapter
+  gem "rr", :git => "https://github.com/btakita/rr.git"
 end

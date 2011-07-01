@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/btakita/rr.git
+  revision: 1385208bbd3a0fdad6df2d2d06b50ecb40dfe9f3
+  specs:
+    rr (1.0.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -20,3 +26,4 @@ DEPENDENCIES
   jeweler (~> 1.6.2)
   minitest
   rcov
+  rr!
