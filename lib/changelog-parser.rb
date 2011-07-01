@@ -15,14 +15,14 @@ module ChangelogParser
       self.new(File.read(path), format)
     end
 
-    def releases
-      @releases ||= @changelog.split(@format.section_start).map {|section| Release.new(section, @format)}
+    def entries
+      @entries ||= @changelog.split(@format.section_start).map {|section| Entry.new(section, @format)}
     end
 
   end
 
 
-  class Release
+  class Entry
 
     include Comparable
 
@@ -45,9 +45,9 @@ module ChangelogParser
       @version ||= Gem::Version.create(headline[@format.version])
     end
 
-    def release_date
-      @release_date ||= if @format.release_date
-                         headline[@format.release_date]
+    def date
+      @date ||= if @format.date
+                          headline[@format.date]
                         else
                           begin
                             Date.parse(headline)
@@ -58,7 +58,7 @@ module ChangelogParser
     end
 
     def <=> other
-      return unless ChangelogParser::Release === other
+      return unless ChangelogParser::Entry === other
       self.version.<=>(other.version)
     end
 
@@ -74,7 +74,7 @@ module ChangelogParser
       def self.line_seperator; raise NotImplementedError; end
       def self.headline;       raise NotImplementedError; end
       def self.version;        raise NotImplementedError; end
-      def self.release_date;   raise NotImplementedError; end
+      def self.date;           raise NotImplementedError; end
     end
 
     class Default < Format
@@ -95,7 +95,7 @@ module ChangelogParser
         RE_GEM_VERSION
       end
 
-      def self.release_date
+      def self.date
         nil
       end
 
@@ -104,7 +104,7 @@ module ChangelogParser
     class Rails < Format
 
       def self.section_start
-        /^(?=\*(?:Rails|#{self.number}))/
+        /^(?=\*(?:Rails|#{self.version}))/
       end
 
       def self.line_seperator
@@ -119,7 +119,7 @@ module ChangelogParser
         RE_GEM_VERSION
       end
 
-      def self.release_date
+      def self.date
         nil
       end
 
