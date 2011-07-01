@@ -70,14 +70,14 @@ module ChangelogParser
       def self.release_date;   raise NotImplementedError; end
     end
 
-    class Hoe < Format
+    class Default < Format
 
       def self.section_start
-        /^(?=\={3})/
+        /^(?=\={1,3}.+#{self.number})/
       end
 
       def self.line_seperator
-        /\n(?:\s*)?/
+        /\n(?:\s)?/
       end
 
       def self.headline
