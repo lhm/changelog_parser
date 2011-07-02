@@ -15,7 +15,7 @@ module ChangelogParser
       end
 
       def self.date
-        nil
+        /\(.+\)/
       end
 
     end
