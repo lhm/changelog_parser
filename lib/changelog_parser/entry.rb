@@ -11,10 +11,6 @@ module ChangelogParser
       @format = format
     end
 
-    def lines
-      @lines ||= @text.split(@format.line_seperator)
-    end
-
     def headline
       @headline ||= @text[@format.headline]
     end
