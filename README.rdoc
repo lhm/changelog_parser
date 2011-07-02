@@ -1,6 +1,26 @@
 = changelog_parser
 
-Description goes here.
+ChangelogParser splits a changelog into its seperate entries and tries to detect the corresponding version number and
+release date. It currently defaults to parsing the common 'wikisyntax' style, but differing formats can easily be
+added.
+
+== Installation
+(not yet)
+
+(sudo) gem install changelog_parser
+
+== Usage
+
+From ruby:
+
+  require 'changelog_parser'
+  changelog = ChangelogParser::Reader.read "/path/to/CHANGELOG"
+  changelog.entries.size              # => 3
+
+  entry = changelog.entries.first
+  entry.version                       # => #<Gem::Version "1.2.3">
+  entry.date                          # => #<Date: 2005-04-06 (4906933/2,0,2299161)>
+  entry.text                          # => "== 1.2.3 / 2005-04-06\n\n  * some new feature added"
 
 == Contributing to changelog_parser
  

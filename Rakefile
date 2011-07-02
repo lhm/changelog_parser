@@ -17,8 +17,12 @@ Jeweler::Tasks.new do |gem|
   gem.name = "changelog_parser"
   gem.homepage = "http://github.com/lhm/changelog_parser"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Simple parser for changelog files}
+  gem.description =<<-EOD
+ChangelogParser splits a changelog into its seperate entries and tries to detect the corresponding version number and
+release date. It currently defaults to parsing the common 'wikisyntax' style, but differing formats can easily be
+added. It includes the 'changelog-parser' skript for parsing a changelog file from the command line.
+  EOD
   gem.email = "lars.mai@kontinui.de"
   gem.authors = ["Lars Henrik Mai"]
   # dependencies defined in Gemfile
