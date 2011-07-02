@@ -42,12 +42,12 @@ class TestEntry < MiniTest::Unit::TestCase
 
   def test_date_with_regex
     format = Object.new
-    mock(format).date.twice { Regexp.new('\d{4}(\-\d{2}){2}')}
+    mock(format).date.twice { /\(.+\)/}
     entry  = CP::Entry.new("some text", format)
-    stub(entry).headline {"== 1.2.3 / 2011-11-21"}
+    stub(entry).headline {"== 1.2.3 (2011-11-21)"}
     date = entry.date
-    assert_kind_of String, date
-    assert_equal "2011-11-21", date
+    assert_kind_of Date, date
+    assert_equal Date.civil(2011, 11, 21), date
   end
 
   def test_comparable

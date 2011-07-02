@@ -21,7 +21,7 @@ module ChangelogParser
 
     def date
       @date ||= if @format.date
-                          headline[@format.date]
+                          Date.parse(headline[@format.date])
                         else
                           begin
                             Date.parse(headline)
