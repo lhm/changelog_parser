@@ -9,13 +9,14 @@ GEM
   specs:
     autotest-standalone (4.5.5)
     git (1.2.5)
-    jeweler (1.6.2)
+    jeweler (1.6.3)
       bundler (~> 1.0)
       git (>= 1.2.5)
       rake
     minitest (2.3.1)
     rake (0.9.2)
     rcov (0.9.9)
+    slop (1.9.1)
 
 PLATFORMS
   ruby
@@ -27,3 +28,4 @@ DEPENDENCIES
   minitest
   rcov
   rr!
+  slop (~> 1.9)
