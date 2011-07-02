@@ -2,37 +2,12 @@
 
 require 'rubygems'
 require 'changelog_parser'
+require 'changelog_parser/cli'
 
-require 'slop'
 
-opts = Slop.new :help => true do
-  on :s, :start,   'minimal version', true
-  on :e, :end,     'maximal version', true
-  on :n, :number,  'number of entries to print', true, :as => Integer, :default => 1
-  on :f, :format,  'specify format of changelog for parsing; currently supported: default, rails.'
-end
+cli = ChangelogParser::CLI.new
+cli.run
 
-@files = []
-
-opts.parse do |arg|
-  @files << arg
-end
-
-logstring = (ARGV.include?("--")) ? STDIN.gets(nil) : File.read(@files.first)
-
-reader = ChangelogParser::Reader.new(logstring)
-
-n = opts['number']
-entries = reader.entries[0..n-1]
-
-puts entries.map(&:text).join("\n")
-
-# entry  = reader.entries.first
-
-#puts "VERSION: #{entry.version.to_s}"
-#puts "DATE:    #{entry.date.to_s}"
-#puts "CONTENT:"
-#puts reader.entries.first.text
-
+exit 0
 
 # vim: ft=ruby
