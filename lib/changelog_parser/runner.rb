@@ -7,13 +7,11 @@ module ChangelogParser
     def initialize
     end
 
-    def run
-      entries = reader.entries[0..@opts['number']-1]
-      puts entries.map(&:text).join("\n")
-    end
-
-    def reader
-      @reader ||= ChangelogParser::Reader.new(get_text)
+    def run(args=ARGV)
+      filename, opts = parse_options(args)
+      reader  = ChangelogParser::Reader.new get_text(filename)
+      entries = reader.entries[0..opts['number']-1]
+      puts entries.map(&:text).join("")
     end
 
     def parse_options(args)
@@ -21,20 +19,16 @@ module ChangelogParser
         on :n, :number,  'number of entries to print', true, :as => Integer, :default => 1
       end
       filenames = []
-      opts.parse {|arg| filenames << arg}
-      @filename, @opts = [filenames.first, opts.to_hash]
+      opts.parse(args) {|arg| filenames << arg}
+      [filenames.first, opts.to_hash]
     end
 
-    def get_text
-      if from_stdin?
+    def get_text(filename)
+      if filename.nil?
         STDIN.gets(nil)
       else
-        File.read(@filename)
+        File.read(filename)
       end
-    end
-
-    def from_stdin?
-      @filename.nil?
     end
 
   end
