@@ -5,9 +5,10 @@ release date. It currently defaults to parsing the common 'wikisyntax' style, bu
 added.
 
 == Installation
-(not yet)
 
-(sudo) gem install changelog_parser
+  gem install jeweler
+  rake build
+  gem install pkg/changelog_parser-0.0.x.gem
 
 == Usage
 
@@ -21,6 +22,19 @@ From ruby:
   entry.version                       # => #<Gem::Version "1.2.3">
   entry.date                          # => #<Date: 2005-04-06 (4906933/2,0,2299161)>
   entry.text                          # => "== 1.2.3 / 2005-04-06\n\n  * some new feature added"
+
+From the commandline:
+
+  $ changelog_parser CHANGELOG        # displays most recent entry
+  $ changelog_parser CHANGELOG -n3    # displays three entries
+  $ cat CHANGELOG | changlog_parser   # also reads from STDIN
+
+  $ changlog_parser -h
+  options:
+
+      -n, --number      number of entries to print
+      -h, --help        Print this help message
+
 
 == Contributing to changelog_parser
  
