@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Lars Henrik Mai}]
-  s.date = %q{2011-07-02}
+  s.date = %q{2011-07-03}
   s.description = %q{ChangelogParser splits a changelog into its seperate entries and tries to detect the corresponding version number and
 release date. It currently defaults to parsing the common 'wikisyntax' style, but differing formats can easily be
 added. It includes the 'changelog-parser' skript for parsing a changelog file from the command line.
@@ -34,13 +34,13 @@ added. It includes the 'changelog-parser' skript for parsing a changelog file fr
     "bin/changelog-parser",
     "changelog_parser.gemspec",
     "lib/changelog_parser.rb",
-    "lib/changelog_parser/cli.rb",
     "lib/changelog_parser/entry.rb",
     "lib/changelog_parser/formats.rb",
     "lib/changelog_parser/formats/default.rb",
     "lib/changelog_parser/formats/format.rb",
     "lib/changelog_parser/formats/rails.rb",
     "lib/changelog_parser/reader.rb",
+    "lib/changelog_parser/runner.rb",
     "test/fixtures/activerecord-changelog",
     "test/fixtures/minitest-history.txt",
     "test/fixtures/parslet-history.txt",
@@ -49,7 +49,8 @@ added. It includes the 'changelog-parser' skript for parsing a changelog file fr
     "test/test_default.rb",
     "test/test_entry.rb",
     "test/test_rails.rb",
-    "test/test_reader.rb"
+    "test/test_reader.rb",
+    "test/test_runner.rb"
   ]
   s.homepage = %q{http://github.com/lhm/changelog_parser}
   s.licenses = [%q{MIT}]
