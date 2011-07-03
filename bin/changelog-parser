@@ -2,10 +2,10 @@
 
 require 'rubygems'
 require 'changelog_parser'
-require 'changelog_parser/cli'
+require 'changelog_parser/runner'
 
 
-cli = ChangelogParser::CLI.new
+cli = ChangelogParser::Runner.new
 cli.run
 
 exit 0
